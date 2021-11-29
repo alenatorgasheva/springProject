@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Students : By Groups</title>
+</head>
+<body>
+<h1 layout:fragment="header">Students : Sorted By Groups</h1>
+<div layout:fragment="content" class="container">
+    <div class="pull-right">
+        <a href="form.html" th:href="@{/(form)}">Add Student</a>
+        <a th:href="@{/}" href="messages.html">Return</a>
+    </div>
+    <div th:each="group : ${groups}">
+        <h2 th:text="'Group ' + ${group.groupName}">1</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Last Name</td>
+                <td>First Name</td>
+                <td>Second Name</td>
+                <td>Birthday Date</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${group.students}">
+                <td>
+                    <a href="view.html"
+                       th:href="@{'/' + ${student.id}}"
+                       th:text="${student.id}">
+                        1
+                    </a>
+                </td>
+                <td th:text="${student.lastName}">1</td>
+                <td th:text="${student.firstName}">1</td>
+                <td th:text="${student.secondName}">1</td>
+                <td th:text="${student.birthdayDate}">1</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
